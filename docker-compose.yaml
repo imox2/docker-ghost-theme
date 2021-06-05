@@ -1,7 +1,6 @@
 version: '3.1'
 volumes:
   mysql-volume:
-  ghost-volume:
     
 services:
  mysql:  
@@ -17,10 +16,10 @@ services:
 
  ghost:  
   build: ./ghost
-  image: lvthillo/ghost:3.40.2
+  image: imox/ghost:3.40.2
   container_name: ghost
   volumes:
-    - ghost-volume:/var/lib/ghost/content
+    - '../ghost-themes/ghost-docker-content:/var/lib/ghost/content'
   restart: always
   ports:
     - 2368:2368 
@@ -30,6 +29,7 @@ services:
     database__connection__user: blog-user
     database__connection__password: supersecret
     database__connection__database: db
+    NODE_ENV: development
   depends_on:
     - mysql
   entrypoint: ["wait-for-it.sh", "mysql", "--", "docker-entrypoint.sh"]
