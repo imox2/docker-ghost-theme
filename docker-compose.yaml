@@ -16,7 +16,7 @@ services:
 
  ghost:  
   build: ./ghost
-  image: imox/ghost:3.40.2
+  image: imox/ghost:4.8.4
   container_name: ghost
   volumes:
     - '../ghost-themes/ghost-docker-content:/var/lib/ghost/content'
